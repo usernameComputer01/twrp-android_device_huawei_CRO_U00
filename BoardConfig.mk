@@ -38,6 +38,13 @@ TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/kernel
 BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
 
+FORCE_REAL_PARTITION_SIZE := true
+ifeq ($(FORCE_REAL_PARTITION_SIZE),true)
+# If finally size LESS THAN real stock size partition,
+# set new size with custom mkbootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
+endif
+
 #TW_NO_USB_STORAGE := true
 RECOVERY_SDCARD_ON_DATA := true
 BOARD_SUPPRESS_EMMC_WIPE := true
